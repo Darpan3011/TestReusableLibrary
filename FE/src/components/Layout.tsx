@@ -107,7 +107,6 @@ export function Layout() {
                     <div className="sm:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-lg">
                         <div className="pt-2 pb-3 space-y-1">
                             <MobileNavLink to="/" active={isActive('/')} onClick={() => setIsMobileMenuOpen(false)}>Home</MobileNavLink>
-                            <MobileNavLink to="/api/filter" active={isActive('/api/filter')} onClick={() => setIsMobileMenuOpen(false)}>API Filter</MobileNavLink>
                             {isAuthenticated && (
                                 <>
                                     <MobileNavLink to="/profile" active={isActive('/profile')} onClick={() => setIsMobileMenuOpen(false)}>Profile</MobileNavLink>
