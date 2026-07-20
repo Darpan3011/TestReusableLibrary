@@ -30,6 +30,42 @@ function Spinner() {
   )
 }
 
+function ApiCallTracker() {
+  const [calls, setCalls] = useState<{id: number, url: string, method: string, dependency: string}[]>([])
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail
+      const id = Date.now() + Math.random()
+      setCalls(prev => [...prev, { id, ...detail }])
+      
+      setTimeout(() => {
+        setCalls(prev => prev.filter(c => c.id !== id))
+      }, 4000)
+    }
+    window.addEventListener('api-call-tracker', handler)
+    return () => window.removeEventListener('api-call-tracker', handler)
+  }, [])
+
+  if (calls.length === 0) return null
+
+  return (
+    <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
+      {calls.map(call => (
+        <div key={call.id} className="bg-gray-900/90 dark:bg-white/90 text-white dark:text-gray-900 px-4 py-3 rounded-lg shadow-xl animate-slide-in-right border border-gray-700 dark:border-gray-200 backdrop-blur-sm flex flex-col gap-1 max-w-sm pointer-events-auto transition-all">
+          <div className="flex items-center justify-between gap-4">
+             <span className="text-xs font-bold px-2 py-0.5 rounded bg-primary-600 text-white">{call.method}</span>
+             <span className="text-sm font-mono truncate">{call.url}</span>
+          </div>
+          <div className="text-xs text-gray-300 dark:text-gray-600 font-medium border-t border-gray-700/50 dark:border-gray-200/50 pt-1 mt-1">
+             ⚡ Powered by: <span className="text-primary-400 dark:text-primary-600 font-semibold">{call.dependency}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, checkedSession } = useAuth()
   if (!checkedSession)
@@ -107,6 +143,7 @@ function AppContent() {
           duration={4000}
         />
       )}
+      <ApiCallTracker />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />

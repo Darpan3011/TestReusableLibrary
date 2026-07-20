@@ -9,27 +9,35 @@ export function HomePage() {
   const features = [
     {
       icon: '👤',
-      title: 'User Profile',
-      description: 'Manage your account settings with support for both OAuth2 and JWT authentication. Enable two-factor authentication (MFA) for enhanced security.',
-      link: '/profile'
+      title: 'Authentication & Security',
+      description: 'Secure user management with OAuth2, JWT, and Two-Factor Authentication (MFA). Includes robust API rate limiting.',
+      link: '/profile',
+      modules: ['darpan-security-starter', 'rate-limiter-core'],
+      apis: ['/auth/*', '/profile/*']
     },
     {
       icon: '💬',
       title: 'SMS Integration',
-      description: 'Send SMS messages through multiple providers including Twilio, AWS SNS, and MessageBird.',
-      link: '/sms'
+      description: 'Send SMS messages seamlessly through multiple providers including Twilio, AWS SNS, and MessageBird.',
+      link: '/sms',
+      modules: ['darpan-communication-starter'],
+      apis: ['/smpp/*']
     },
     {
       icon: '🤖',
       title: 'AI Assistant',
-      description: 'Interact with an intelligent AI that can answer questions and generate SQL queries from natural language.',
-      link: '/ai'
+      description: 'Interact with an intelligent AI that can answer database questions and generate SQL queries from natural language.',
+      link: '/ai',
+      modules: ['darpan-ai-database-agent'],
+      apis: ['/aidb/*']
     },
     {
       icon: '📧',
       title: 'Email Service',
       description: 'Send emails with attachments using a simple and intuitive interface with multipart support.',
-      link: '/email/multiple'
+      link: '/email/multiple',
+      modules: ['darpan-communication-starter'],
+      apis: ['/email/test/*']
     }
   ]
 
@@ -40,12 +48,11 @@ export function HomePage() {
         <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
           <div className="text-center">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
-              <span className="block xl:inline">Welcome to</span>{' '}
+              <span className="block xl:inline">Darpan's</span>{' '}
               <span className="block text-primary-600 xl:inline">Reusable Modules</span>
             </h1>
             <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              A modern, secure platform built with React and Tailwind CSS.
-              Explore AI-powered features, communication tools, and seamless integrations.
+              A personal demonstration platform integrating my custom-built microservices and libraries. Explore how each independent dependency powers advanced features like AI, Security, and Communications across various APIs.
             </p>
 
             {!isAuthenticated && (
@@ -92,9 +99,26 @@ export function HomePage() {
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 flex-grow">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 flex-grow mb-4">
                         {feature.description}
                       </p>
+                      <div className="mt-auto space-y-3">
+                        <div className="flex flex-col items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                          <span className="font-semibold uppercase tracking-wider">APIs:</span>
+                          <div className="flex flex-wrap justify-center gap-1">
+                            {feature.apis.map((api, idx) => (
+                              <code key={idx} className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{api}</code>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {feature.modules.map((mod, idx) => (
+                            <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
+                              {mod}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </Card>
                 </Link>
@@ -105,9 +129,26 @@ export function HomePage() {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 flex-grow">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 flex-grow mb-4">
                       {feature.description}
                     </p>
+                    <div className="mt-auto space-y-3">
+                      <div className="flex flex-col items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                        <span className="font-semibold uppercase tracking-wider">APIs:</span>
+                        <div className="flex flex-wrap justify-center gap-1">
+                          {feature.apis.map((api, idx) => (
+                            <code key={idx} className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{api}</code>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {feature.modules.map((mod, idx) => (
+                          <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
+                            {mod}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </Card>
               )

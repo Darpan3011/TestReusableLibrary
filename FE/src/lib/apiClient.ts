@@ -20,6 +20,27 @@ class ApiClient {
         config.headers = config.headers ?? {}
         config.headers['Authorization'] = `Bearer ${this.token}`
       }
+      
+      // Dispatch event for UI popup to show which dependency is being called
+      if (typeof window !== 'undefined' && config.url) {
+        let dependency = 'rate-limiter-core'
+        if (config.url.startsWith('/auth') || config.url.startsWith('/profile')) {
+          dependency = 'darpan-security-starter'
+        } else if (config.url.startsWith('/smpp') || config.url.startsWith('/email')) {
+          dependency = 'darpan-communication-starter'
+        } else if (config.url.startsWith('/aidb')) {
+          dependency = 'darpan-ai-database-agent'
+        }
+
+        window.dispatchEvent(new CustomEvent('api-call-tracker', {
+          detail: {
+            url: config.url,
+            method: config.method?.toUpperCase() || 'GET',
+            dependency
+          }
+        }))
+      }
+
       return config
     })
     this.client.interceptors.response.use(
