@@ -32,11 +32,17 @@ export function Layout() {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center gap-3">
-                                <Link to="/" className="flex items-center gap-2">
-                                    <img className="h-8 w-auto" src="/logo192.png" alt="Logo" />
+                                <Link to="/" className="flex items-center gap-3">
+                                    <div className="flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-md shadow-primary-500/20 flex-shrink-0">
+                                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                        </svg>
+                                    </div>
                                     <div className="flex flex-col">
-                                        <span className="font-bold text-gray-900 dark:text-white text-lg leading-none">Reusable Modules</span>
-                                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">User Admin Panel based on Roles</span>
+                                        <span className="font-extrabold text-gray-900 dark:text-white text-lg leading-tight tracking-tight">Darpan's Modules</span>
+                                        <span className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-wider">Demo Platform</span>
                                     </div>
                                 </Link>
                             </div>
