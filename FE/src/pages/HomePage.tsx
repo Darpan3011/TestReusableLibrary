@@ -42,60 +42,54 @@ export function HomePage() {
   ]
 
   return (
-    <div className="relative overflow-hidden">
-      {/* Hero Section */}
-      <div className="relative pt-6 pb-16 sm:pb-24">
-        <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
-          <div className="text-center">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
-              <span className="block xl:inline">Darpan's</span>{' '}
-              <span className="block text-primary-600 xl:inline">Reusable Modules</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              A personal demonstration platform integrating my custom-built microservices and libraries. Explore how each independent dependency powers advanced features like AI, Security, and Communications across various APIs.
-            </p>
+    <div className="relative flex flex-col lg:flex-row min-h-[calc(100vh-4rem)]">
+      {/* Left Column: Hero Section */}
+      <div className="w-full lg:w-5/12 xl:w-1/3 flex flex-col justify-center relative pt-12 pb-16 lg:py-0 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
+        <main className="mx-auto max-w-md px-6 text-center lg:text-left">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-5xl">
+            <span className="block">Darpan's</span>{' '}
+            <span className="block text-primary-600 mt-1">Reusable Modules</span>
+          </h1>
+          <p className="mt-4 text-base text-gray-500 dark:text-gray-400 sm:text-lg">
+            A personal demonstration platform integrating my custom-built microservices and libraries. Explore how each independent dependency powers advanced features like AI, Security, and Communications across various APIs.
+          </p>
 
-            {!isAuthenticated && (
-              <div className="mt-8 max-w-md mx-auto sm:flex sm:justify-center">
-                <div className="rounded-md shadow">
-                  <Link to="/register">
-                    <Button className="w-full flex items-center justify-center px-8 py-3 text-base font-medium md:py-4 md:text-lg md:px-10">
-                      Get Started
-                    </Button>
-                  </Link>
-                </div>
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <Link to="/login">
-                    <Button variant="secondary" className="w-full flex items-center justify-center px-8 py-3 text-base font-medium md:py-4 md:text-lg md:px-10">
-                      Sign In
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+          {!isAuthenticated && (
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link to="/register" className="w-full sm:w-auto">
+                <Button className="w-full flex items-center justify-center px-8 py-3 text-base font-medium">
+                  Get Started
+                </Button>
+              </Link>
+              <Link to="/login" className="w-full sm:w-auto">
+                <Button variant="secondary" className="w-full flex items-center justify-center px-8 py-3 text-base font-medium">
+                  Sign In
+                </Button>
+              </Link>
+            </div>
+          )}
         </main>
       </div>
 
-      {/* Features Section */}
-      <div className="py-12 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+      {/* Right Column: Features Section */}
+      <div className="w-full lg:w-7/12 xl:w-2/3 flex flex-col py-12 lg:py-16 bg-gray-50 dark:bg-gray-900 overflow-y-auto">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+          <div className="text-center lg:text-left mb-10">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
               Powerful Features
             </h2>
-            <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">
               Everything you need to build modern applications
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {features.map((feature, index) => (
               isAuthenticated ? (
                 <Link key={index} to={feature.link} className="block h-full">
-                  <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 flex flex-col h-full cursor-pointer">
-                    <div className="text-center flex flex-col h-full">
-                      <div className="text-5xl mb-4">{feature.icon}</div>
+                  <Card className="hover:shadow-xl hover:scale-[1.02] transition-all duration-200 flex flex-col h-full cursor-pointer">
+                    <div className="text-center lg:text-left flex flex-col h-full">
+                      <div className="text-4xl mb-4">{feature.icon}</div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                         {feature.title}
                       </h3>
@@ -103,15 +97,15 @@ export function HomePage() {
                         {feature.description}
                       </p>
                       <div className="mt-auto space-y-3">
-                        <div className="flex flex-col items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex flex-col lg:items-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                           <span className="font-semibold uppercase tracking-wider">APIs:</span>
-                          <div className="flex flex-wrap justify-center gap-1">
+                          <div className="flex flex-wrap lg:justify-start justify-center gap-1">
                             {feature.apis.map((api, idx) => (
                               <code key={idx} className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{api}</code>
                             ))}
                           </div>
                         </div>
-                        <div className="flex flex-wrap justify-center gap-2">
+                        <div className="flex flex-wrap lg:justify-start justify-center gap-2">
                           {feature.modules.map((mod, idx) => (
                             <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
                               {mod}
@@ -124,8 +118,8 @@ export function HomePage() {
                 </Link>
               ) : (
                 <Card key={index} className="flex flex-col h-full">
-                  <div className="text-center flex flex-col h-full">
-                    <div className="text-5xl mb-4">{feature.icon}</div>
+                  <div className="text-center lg:text-left flex flex-col h-full">
+                    <div className="text-4xl mb-4">{feature.icon}</div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       {feature.title}
                     </h3>
@@ -133,15 +127,15 @@ export function HomePage() {
                       {feature.description}
                     </p>
                     <div className="mt-auto space-y-3">
-                      <div className="flex flex-col items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="flex flex-col lg:items-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                         <span className="font-semibold uppercase tracking-wider">APIs:</span>
-                        <div className="flex flex-wrap justify-center gap-1">
+                        <div className="flex flex-wrap lg:justify-start justify-center gap-1">
                           {feature.apis.map((api, idx) => (
                             <code key={idx} className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{api}</code>
                           ))}
                         </div>
                       </div>
-                      <div className="flex flex-wrap justify-center gap-2">
+                      <div className="flex flex-wrap lg:justify-start justify-center gap-2">
                         {feature.modules.map((mod, idx) => (
                           <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
                             {mod}
@@ -156,34 +150,6 @@ export function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* CTA Section */}
-      {!isAuthenticated && (
-        <div className="bg-primary-600">
-          <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              <span className="block">Ready to get started?</span>
-              <span className="block text-primary-200">Create your account today.</span>
-            </h2>
-            <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-              <div className="inline-flex rounded-md shadow">
-                <Link to="/register">
-                  <button className="inline-flex items-center justify-center px-8 py-3 text-base font-medium md:py-4 md:text-lg md:px-10 border border-transparent rounded-lg bg-white text-primary-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200">
-                    Get Started
-                  </button>
-                </Link>
-              </div>
-              <div className="ml-3 inline-flex rounded-md shadow">
-                <Link to="/login">
-                  <button className="inline-flex items-center justify-center px-8 py-3 text-base font-medium md:py-4 md:text-lg md:px-10 border border-transparent rounded-lg bg-primary-700 text-white hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200">
-                    Sign In
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
