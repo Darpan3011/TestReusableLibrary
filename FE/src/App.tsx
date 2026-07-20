@@ -50,15 +50,15 @@ function ApiCallTracker() {
   if (calls.length === 0) return null
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
+    <div className="fixed top-20 right-4 z-[9999] flex flex-col gap-2 pointer-events-none w-80">
       {calls.map(call => (
-        <div key={call.id} className="bg-gray-900/90 dark:bg-white/90 text-white dark:text-gray-900 px-4 py-3 rounded-lg shadow-xl animate-slide-in-right border border-gray-700 dark:border-gray-200 backdrop-blur-sm flex flex-col gap-1 max-w-sm pointer-events-auto transition-all">
+        <div key={call.id} className="bg-gray-900/90 dark:bg-white/90 text-white dark:text-gray-900 px-4 py-3 rounded-lg shadow-xl animate-slide-in-right border border-gray-700 dark:border-gray-200 backdrop-blur-sm flex flex-col gap-1 w-full pointer-events-auto transition-all duration-300 transform origin-top">
           <div className="flex items-center justify-between gap-4">
-             <span className="text-xs font-bold px-2 py-0.5 rounded bg-primary-600 text-white">{call.method}</span>
+             <span className="text-xs font-bold px-2 py-0.5 rounded bg-primary-600 text-white flex-shrink-0">{call.method}</span>
              <span className="text-sm font-mono truncate">{call.url}</span>
           </div>
           <div className="text-xs text-gray-300 dark:text-gray-600 font-medium border-t border-gray-700/50 dark:border-gray-200/50 pt-1 mt-1">
-             ⚡ Powered by: <span className="text-primary-400 dark:text-primary-600 font-semibold">{call.dependency}</span>
+             ⚡ Powered by: <span className="text-primary-400 dark:text-primary-600 font-semibold truncate">{call.dependency}</span>
           </div>
         </div>
       ))}
