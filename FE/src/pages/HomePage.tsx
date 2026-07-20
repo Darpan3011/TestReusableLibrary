@@ -153,12 +153,13 @@ export function HomePage() {
       </div>
 
       {/* Floating Arrow Popup pointing to the top right corner for API Tracking */}
-      <div className="hidden lg:flex fixed top-32 right-12 z-[9000] flex-col items-center pointer-events-none animate-bounce">
+      <div className="hidden lg:flex fixed top-[40vh] right-12 z-[9000] flex-col items-center pointer-events-none animate-bounce">
         <svg className="w-8 h-8 text-primary-500 mb-1 drop-shadow-md" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
           <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>
-        <div className="bg-primary-600 text-white px-4 py-2 rounded-xl shadow-lg shadow-primary-500/40 text-sm font-bold relative">
-          Watch for live API calls here!
+        <div className="bg-primary-600 text-white p-3 rounded-xl shadow-lg shadow-primary-500/40 relative max-w-[220px] text-center">
+          <p className="text-sm font-bold leading-tight mb-1">Live API Tracking</p>
+          <p className="text-xs font-medium text-primary-100 leading-snug">Watch here to see which custom module powers your interactions!</p>
           <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary-600 rotate-45 rounded-sm"></div>
         </div>
       </div>
