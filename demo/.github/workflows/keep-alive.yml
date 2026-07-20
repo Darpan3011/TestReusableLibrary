@@ -1,0 +1,13 @@
+name: Ping Backend to Prevent Cold Start
+
+on:
+  schedule:
+    - cron: '*/9 * * * *' # Runs every 9 minutes
+
+jobs:
+  ping-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the Backend
+        run: |
+          curl -I -X GET "https://test-reusable-latest.onrender.com/health"
