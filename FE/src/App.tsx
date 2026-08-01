@@ -18,6 +18,7 @@ import { AuthProvider, useAuth } from './auth/AuthContext'
 import { Layout } from './components/Layout'
 import { Toast } from './components/ui/Toast'
 import { ThemeProvider } from './context/ThemeContext'
+import { Analytics } from '@vercel/analytics/react'
 
 function Spinner() {
   return (
@@ -214,6 +215,7 @@ export default function App() {
     <AuthProvider>
       <ThemeProvider>
         <AppContent />
+        <Analytics />
       </ThemeProvider>
     </AuthProvider>
   )
