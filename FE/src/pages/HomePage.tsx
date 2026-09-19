@@ -223,7 +223,7 @@ export function HomePage() {
               Ready to Explore?
             </h2>
             <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Sign up to get full access to all modules and see the reusable libraries in action
+              Sign up to get full access to all modules and see the reusable libraries in an action
             </p>
             <Link to="/register">
               <Button className="px-8 py-4 text-lg font-semibold bg-primary-500 text-white hover:bg-primary-700 shadow-xl transition-all">
